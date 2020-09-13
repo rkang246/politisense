@@ -24,7 +24,7 @@ for sub in subnames:
   df_posts['subject'] = df_posts[0].apply(lambda text: list(filter(lambda a: a in text, politicians)))
   df_posts = df_posts[df_posts['subject'].map(lambda d: len(d)) > 0]
   df_posts = df_posts.rename(columns={0: 'text', 1: 'sentiment'})
-  df_posts['subreddit'] = sub
+  df_posts['category'] = 'r/' + sub
   reddits = df_posts.to_dict('records')
   # print(reddits)
   if reddits != []:
