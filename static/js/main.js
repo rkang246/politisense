@@ -334,8 +334,13 @@
 })(jQuery);
 
 console.log("HELLO");
-function bitch(val) {
+function bitch(val, category_sentiments) {
   console.log(val);
+  // category_sentiments = (category_sentiments);
+  category_sentiments = category_sentiments.split("&#34;").join('"');
+  category_sentiments = JSON.parse(category_sentiments);
+  // console.log();
+
   ctx = document.getElementById("myChart");
   red = "rgb(255, 99, 132)";
   grey = "rgb(201, 203, 207)";
@@ -365,70 +370,70 @@ function bitch(val) {
     data: data,
     options: options,
   });
+
+  $(document).ready(function () {
+    console.log("n my opinion salil is bad");
+    var chart = {
+      type: "column",
+    };
+    var title = {
+      text: "",
+    };
+    var xAxis = {
+      categories: ["Sentiment Score"],
+    };
+    var yAxis = {
+      visible: false,
+    };
+    var credits = {
+      enabled: false,
+    };
+    var series = [
+      {
+        name: "Twitter",
+        data: [category_sentiments["twitter"]],
+      },
+      {
+        name: "r/politics",
+        data: [category_sentiments["r/politics"]],
+      },
+      {
+        name: "r/conservative",
+        data: [category_sentiments["r/conservative"]],
+      },
+      {
+        name: "r/democrat",
+        data: [category_sentiments["r/democrat"]],
+      },
+      {
+        name: "r/government",
+        data: [category_sentiments["r/government"]],
+      },
+      {
+        name: "r/libertarian",
+        data: [category_sentiments["r/libertarian"]],
+      },
+      {
+        name: "r/news",
+        data: [category_sentiments["r/news"]],
+      },
+      {
+        name: "CNN",
+        data: [category_sentiments["cnn"]],
+      },
+      {
+        name: "Fox News",
+        data: [category_sentiments["fox"]],
+      },
+    ];
+
+    var json = {};
+    json.chart = chart;
+    json.title = title;
+    json.xAxis = xAxis;
+    json.yAxis = yAxis;
+    json.credits = credits;
+    json.series = series;
+    $("#container").highcharts(json);
+  });
 }
-
-$(document).ready(function () {
-  console.log("n my opinion salil is bad");
-  var chart = {
-    type: "column",
-  };
-  var title = {
-    text: "",
-  };
-  var xAxis = {
-    categories: ["Sentiment Score"],
-  };
-  var yAxis = {
-    visible: false,
-  };
-  var credits = {
-    enabled: false,
-  };
-  var series = [
-    {
-      name: "Twitter",
-      data: [-50],
-    },
-    {
-      name: "r/politics",
-      data: [80],
-    },
-    {
-      name: "r/conservative",
-      data: [-80],
-    },
-    {
-      name: "r/democrat",
-      data: [80],
-    },
-    {
-      name: "r/government",
-      data: [80],
-    },
-    {
-      name: "r/libertarian",
-      data: [20],
-    },
-    {
-      name: "r/news",
-      data: [-10],
-    },
-    {
-      name: "CNN",
-      data: [80],
-    },
-    {
-      name: "Fox News",
-      data: [30],
-    },
-  ];
-
-  var json = {};
-  json.chart = chart;
-  json.title = title;
-  json.xAxis = xAxis;
-  json.yAxis = yAxis;
-  json.credits = credits;
-  json.series = series;
-  $("#container").highcharts(json);
-});

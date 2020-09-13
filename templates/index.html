@@ -51,7 +51,7 @@
       </header>
       <footer></footer>
       {% if query_made %}
-      <div id="results" style="margin-top: 3em;">
+      <div id="results" style="margin-top: 3em">
         <h1 id="results-name">{{previous_query}}</h1>
         <blockquote>
           <p style="color: black !important">"{{query_example}}"</p>
@@ -59,19 +59,16 @@
         <canvas id="myChart"></canvas>
         <pre id="sentiment_score">{{query_percent}}%</pre>
 
-
-        
-      <div id = "container" style = "" ></div>
+        <div id="container" style=""></div>
       </div>
+
       <script>
         window.onload = () => {
           console.log("boob");
-          bitch({{query_sentiment}});
+          bitch({{query_sentiment}},"{{category_sentiments}}");
         };
       </script>
-
       {% endif %}
-      
     </div>
 
     <!-- BG -->
@@ -84,7 +81,7 @@
     <script src="../static/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="../static/js/results.js"></script>
-    
-    <script src = "https://code.highcharts.com/highcharts.js"></script> 
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
   </body>
 </html>

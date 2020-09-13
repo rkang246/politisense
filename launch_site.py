@@ -5,7 +5,7 @@
 from flask import Flask, render_template, url_for, redirect, request
 from reader import DatabaseHelper
 from functools import reduce
-import random
+import random, json
 
 app = Flask(__name__)
 helper = DatabaseHelper()
@@ -17,9 +17,9 @@ def index():
         print("Search query: ", data)
         query_result = getPoliticalSentiment(data)
         #TODO: change jinja templating after search goes through or reroute to new template
-
-        return render_template("index.html", query_made=True, previous_query=data, query_sentiment=query_result['sentiment'], query_example=query_result['example'], query_percent = round(query_result['sentiment'] * 100,3), category_sentiments=query_result['category_sentiments'] )
-
+        # print(json.dumps(query_result['category_sentiments']))
+        return render_template("index.html", query_made=True, previous_query=data, query_sentiment=query_result['sentiment'], query_example=query_result['example'], query_percent = round(query_result['sentiment'] * 100,3), category_sentiments=json.dumps(query_result['category_sentiments']) )
+    
     elif (request.method == 'GET'):
         return render_template("index.html", query_made=False, previous_query="")
 
