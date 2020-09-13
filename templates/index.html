@@ -6,6 +6,7 @@
     <meta name="author" content="colorlib.com" />
     <title>PolitiSense</title>
     <link href="../static/css/main.css" rel="stylesheet" />
+    <script src="../static/js/results.js"></script>
   </head>
 
   <body class="{% if not query_made %}is-preload{% endif %}">
@@ -52,12 +53,18 @@
       <footer></footer>
       {% if query_made %}
       <div id="results">
-        <h1 id="results-name">Kamilla Harris</h1>
-        <h2 id="results-sentiment">Negative</h2>
-        <p id="results-example">I hate her</p>
+        <h1 id="results-name">{{previous_query}}</h1>
+        <blockquote>
+          <p style="color: black !important">"{{query_example}}"</p>
+        </blockquote>
         <canvas id="myChart"></canvas>
       </div>
-
+      <script>
+        window.onload = () => {
+          console.log("boob");
+          bitch(0.2);
+        };
+      </script>
       {% endif %}
     </div>
 
@@ -70,36 +77,5 @@
     <script src="../static/js/util.js"></script>
     <script src="../static/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script>
-      var ctx = document.getElementById("myChart").getContext("2d");
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: "line",
-
-        // The data for our dataset
-        data: {
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-          ],
-          datasets: [
-            {
-              label: "My First dataset",
-              backgroundColor: "rgb(255, 99, 132)",
-              borderColor: "rgb(255, 99, 132)",
-              data: [0, 10, 5, 2, 20, 30, 45],
-            },
-          ],
-        },
-
-        // Configuration options go here
-        options: {},
-      });
-    </script>
   </body>
 </html>
