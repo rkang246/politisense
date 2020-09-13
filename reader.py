@@ -7,6 +7,8 @@ class DatabaseHelper:
     self.db = self.client['PennApps2020']
     self.twitter_sentiment = self.db['twitter_sentiment']
     self.reddit_sentiment = self.db['reddit_sentiment']
+    self.cnn_sentiment = self.db['cnn_sentiment']
+    self.fox_sentiment = self.db['fox_sentiment']
 
   def find_by_name(self, name):
     if (name == "Joseph Biden"):
@@ -15,4 +17,7 @@ class DatabaseHelper:
       name = "Trump"
     tr = self.twitter_sentiment.find( { "subject": name } )
     rr = self.reddit_sentiment.find( { "subject": name } )
-    return list(tr) + list(rr)
+    cr = self.cnn_sentiment.find( { "subject": name } )
+    fr = self.fox_sentiment.find( { "subject": name } )
+
+    return list(tr) + list(rr) + list(cr) + list(fr)
