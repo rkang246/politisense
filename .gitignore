@@ -3,3 +3,4 @@ twitter_data/*
 __pycache__
 pennapps2020-d0fc6-firebase-adminsdk-ewuie-aa114f10be.json
 *.pyc
+.ipynb_checkpoints/
