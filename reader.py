@@ -16,8 +16,14 @@ class DatabaseHelper:
     if (name == "Donald Trump"):
       name = "Trump"
     tr = self.twitter_sentiment.find( { "subject": name } )
+    for el in tr:
+      el.update({'category':'twitter'})
     rr = self.reddit_sentiment.find( { "subject": name } )
     cr = self.cnn_sentiment.find( { "subject": name } )
+    for el in cr:
+      el.update({'category':'cnn'})
     fr = self.fox_sentiment.find( { "subject": name } )
+    for el in fr:
+      el.update({'category':'fox'})
 
     return list(tr) + list(rr) + list(cr) + list(fr)
