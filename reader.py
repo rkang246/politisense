@@ -1,21 +1,18 @@
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import re
-import nltk
-from nltk.tokenize import RegexpTokenizer
-from nltk.stem.porter import PorterStemmer
-from nltk.stem.wordnet import WordNetLemmatizer
-from nltk.corpus import stopwords
-import matplotlib.pyplot as plt
-from collections import Counter
-from nltk.probability import FreqDist
-from sklearn.feature_extraction.text import TfidfTransformer
-import matplotlib.pyplot as plt
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import calendar
-import datetime
-import statistics
+import pymongo
 
-all_df = pd.read_pickle('all-results.pkl')
-sorted_all_df = all_df.sort_values('created_utc', ascending=True)
+class DatabaseHelper:
+
+  def __init__(self):
+    self.client = pymongo.MongoClient("mongodb+srv://admin:1234@cluster0.wcn2l.mongodb.net/PenApps2020?retryWrites=true&w=majority")
+    self.db = self.client['PennApps2020']
+    self.twitter_sentiment = self.db['twitter_sentiment']
+    self.reddit_sentiment = self.db['reddit_sentiment']
+
+  def find_by_name(self, name):
+    if (name == "Joseph Biden"):
+      name = "Biden"
+    if (name == "Donald Trump"):
+      name = "Trump"
+    tr = self.twitter_sentiment.find( { "subject": name } )
+    rr = self.reddit_sentiment.find( { "subject": name } )
+    return list(tr) + list(rr)
