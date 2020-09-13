@@ -340,11 +340,15 @@ function bitch(val) {
   red = "rgb(255, 99, 132)";
   grey = "rgb(201, 203, 207)";
   green = "rgb(75, 192, 192)";
+
+  if (val > 0) color = green;
+  else color = red;
+
   data = {
     datasets: [
       {
         data: [val, 1 - val],
-        backgroundColor: [red, grey],
+        backgroundColor: [color, grey],
         label: "Dataset 1",
       },
     ],
@@ -363,69 +367,68 @@ function bitch(val) {
   });
 }
 
+$(document).ready(function () {
+  console.log("n my opinion salil is bad");
+  var chart = {
+    type: "column",
+  };
+  var title = {
+    text: "",
+  };
+  var xAxis = {
+    categories: ["Sentiment Score"],
+  };
+  var yAxis = {
+    visible: false,
+  };
+  var credits = {
+    enabled: false,
+  };
+  var series = [
+    {
+      name: "Twitter",
+      data: [-50],
+    },
+    {
+      name: "r/politics",
+      data: [80],
+    },
+    {
+      name: "r/conservative",
+      data: [-80],
+    },
+    {
+      name: "r/democrat",
+      data: [80],
+    },
+    {
+      name: "r/government",
+      data: [80],
+    },
+    {
+      name: "r/libertarian",
+      data: [20],
+    },
+    {
+      name: "r/news",
+      data: [-10],
+    },
+    {
+      name: "CNN",
+      data: [80],
+    },
+    {
+      name: "Fox News",
+      data: [30],
+    },
+  ];
 
-
-$(document).ready(function() {  
-	console.log("n my opinion salil is bad");
-	var chart = {
-	  type: 'column'
-	};
-	var title = {
-	  text: ''   
-	};   
-	var xAxis = {
-	  categories: ['Sentiment Score']
-	};
-	var yAxis = {
-	  visible: false
-	}
-	var credits = {
-	  enabled: false
-	};
-	var series = [
-	  {
-		name: 'Twitter',
-		data: [-50]
-	  }, 
-	  {
-		name: 'r/politics',
-		data: [80]
-	  }, 
-	  {
-		name: 'r/conservative',
-		data: [-80]
-	  }, 
-	  {
-		name: 'r/democrat',
-		data: [80]
-	  }, 
-	  {
-		name: 'r/government',
-		data: [80]
-	  }, 
-	  {
-		name: 'r/libertarian',
-		data: [20]
-	  }, 
-	  {
-		name: 'r/news',
-		data: [-10]
-	  }, 
-	  {
-		name: 'CNN',
-		data: [80]
-	  }, {
-		name: 'Fox News',
-		data: [30]
-	  }, 
-	];     
-  
-	var json = {};   
-	json.chart = chart; 
-	json.title = title; 
-	json.xAxis = xAxis;
-	json.yAxis = yAxis;
-	json.credits = credits;
-	json.series = series;
-	$('#container').highcharts(json);
-  });
+  var json = {};
+  json.chart = chart;
+  json.title = title;
+  json.xAxis = xAxis;
+  json.yAxis = yAxis;
+  json.credits = credits;
+  json.series = series;
+  $("#container").highcharts(json);
+});
