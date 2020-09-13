@@ -16,12 +16,15 @@ print(listOfFiles)
 
 politicians = ['Biden', 'Trump', 'Kamala Harris', 'Mike Pence']
 
-for file in listOfFiles:
-  posts_list = pd.read_pickle(f"{file}")
+subnames = ['politics', 'conservative', 'democrats', 'government', 'libertarian', 'news']
+
+for sub in subnames:
+  posts_list = pd.read_pickle(f"./reddit_data/results-{sub}.pkl")
   df_posts = pd.DataFrame(posts_list)
   df_posts['subject'] = df_posts[0].apply(lambda text: list(filter(lambda a: a in text, politicians)))
   df_posts = df_posts[df_posts['subject'].map(lambda d: len(d)) > 0]
   df_posts = df_posts.rename(columns={0: 'text', 1: 'sentiment'})
+  df_posts['subreddit'] = sub
   reddits = df_posts.to_dict('records')
   # print(reddits)
   if reddits != []:
