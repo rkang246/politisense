@@ -18,7 +18,7 @@ def index():
         query_result = getPoliticalSentiment(data)
         #TODO: change jinja templating after search goes through or reroute to new template
 
-        return render_template("index.html", query_made=True, previous_query=data, query_sentiment=query_result['sentiment'], query_example=query_result['example'])
+        return render_template("index.html", query_made=True, previous_query=data, query_sentiment=query_result['sentiment'], query_example=query_result['example'], query_percent = round(query_result['sentiment'] * 100,3) )
 
     elif (request.method == 'GET'):
         return render_template("index.html", query_made=False, previous_query="")

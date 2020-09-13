@@ -2823,3 +2823,11 @@ body.is-preload #footer {
   justify-content: center;
   font-size: 48px;
 }
+
+#sentiment_score {
+  position: absolute;
+  color: black;
+  right: 685;
+  bottom: 135;
+  font-weight: bolder;
+}
