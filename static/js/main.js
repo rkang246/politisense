@@ -302,14 +302,6 @@
     }
   });
 
-  // Scrolly.
-  $(".scrolly").scrolly({
-    speed: 1000,
-    offset: function () {
-      return $header.height() + 10;
-    },
-  });
-
   // Scroll restoration.
   // This prevents the page from scrolling back to the top on a hashchange.
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -370,3 +362,70 @@ function bitch(val) {
     options: options,
   });
 }
+
+
+
+$(document).ready(function() {  
+	console.log("n my opinion salil is bad");
+	var chart = {
+	  type: 'column'
+	};
+	var title = {
+	  text: ''   
+	};   
+	var xAxis = {
+	  categories: ['Sentiment Score']
+	};
+	var yAxis = {
+	  visible: false
+	}
+	var credits = {
+	  enabled: false
+	};
+	var series = [
+	  {
+		name: 'Twitter',
+		data: [-50]
+	  }, 
+	  {
+		name: 'r/politics',
+		data: [80]
+	  }, 
+	  {
+		name: 'r/conservative',
+		data: [-80]
+	  }, 
+	  {
+		name: 'r/democrat',
+		data: [80]
+	  }, 
+	  {
+		name: 'r/government',
+		data: [80]
+	  }, 
+	  {
+		name: 'r/libertarian',
+		data: [20]
+	  }, 
+	  {
+		name: 'r/news',
+		data: [-10]
+	  }, 
+	  {
+		name: 'CNN',
+		data: [80]
+	  }, {
+		name: 'Fox News',
+		data: [30]
+	  }, 
+	];     
+  
+	var json = {};   
+	json.chart = chart; 
+	json.title = title; 
+	json.xAxis = xAxis;
+	json.yAxis = yAxis;
+	json.credits = credits;
+	json.series = series;
+	$('#container').highcharts(json);
+  });
