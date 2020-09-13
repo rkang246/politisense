@@ -29,7 +29,7 @@ def getPoliticalSentiment(name):
   random.shuffle(sentimentBlobs)
   sentimentScores = [score['sentiment'] for score in sentimentBlobs]
   averageSentiment = reduce(lambda x, y: x + y, sentimentScores) / len(sentimentScores)
-  example = ""
+  example = "Mike Pence seen with local firefighters"
   for blob in sentimentBlobs:
     if abs(blob['sentiment'] - averageSentiment) < 0.1:
       example = blob['text']

@@ -11,13 +11,19 @@ class DatabaseHelper:
     self.fox_sentiment = self.db['fox_sentiment']
 
   def find_by_name(self, name):
-    if (name == "Joseph Biden"):
+    if (name == "Joe Biden"):
       name = "Biden"
     if (name == "Donald Trump"):
       name = "Trump"
     tr = self.twitter_sentiment.find( { "subject": name } )
+    for el in tr:
+      el.update({'category':'twitter'})
     rr = self.reddit_sentiment.find( { "subject": name } )
     cr = self.cnn_sentiment.find( { "subject": name } )
+    for el in cr:
+      el.update({'category':'cnn'})
     fr = self.fox_sentiment.find( { "subject": name } )
-
+    for el in fr:
+      el.update({'category':'fox'})
+    # print(list(tr) + list(rr) + list(cr) + list(fr))
     return list(tr) + list(rr) + list(cr) + list(fr)
